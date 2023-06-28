@@ -31,11 +31,7 @@ for element in aired_div:
     aired = element.text.strip()
     print(aired)
 
-aired_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(3) > span.name')
-for element in aired_div:
-    aired = element.text.strip()
-    print(aired)
- 
+
 
 permited_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(4) > span.name')
 for element in permited_div:
@@ -44,3 +40,12 @@ for element in permited_div:
 
 
 
+duration_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(5) > span.name')
+for element in duration_div:
+    duration = element.text.strip()
+    print(duration)
+
+    score_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(7) > span.name')
+for element in score_div:
+    score = element.text.strip()
+    print(score)
