@@ -1,8 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 
 # URL of the website to scrape
-data=[];
+data = []
+
 for page in range(1, 27):
     url = f'https://zoro.to/movie?page={page}'
 
@@ -48,15 +50,15 @@ for page in range(1, 27):
         image = image_div[0]['src'] if image_div else ''
 
         film_direction = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-detail > div.film-buttons > a')
-        to_the_film='https://zoro.to'+film_direction[0]['href']
+        to_the_film = 'https://zoro.to' + film_direction[0]['href']
         response = requests.get(to_the_film)
         soup = BeautifulSoup(response.content, 'html.parser')
         video = soup.select('#iframe-embed')
         if video:
-         video[0]['src'] = "https://rapid-cloud.co/embed-6/GVncPoK2HAma?k=1&amp;autoPlay=1&amp;oa=0&amp;asi=1"
+            video[0]['src'] = "https://rapid-cloud.co/embed-6/GVncPoK2HAma?k=1&amp;autoPlay=1&amp;oa=0&amp;asi=1"
 
         obj = {
-            "video":video,
+            "video": video[0]['src'] if video else '',
             "title": title,
             "image": image,
             "overview": overview,
@@ -66,9 +68,11 @@ for page in range(1, 27):
             "permited": permited,
             "studios": studios,
         }
+        print(obj)
         data.append(obj)
 
-        
+# Write data to a file
+with open('data.txt', 'w') as file:
+    json.dump(data, file)
 
-
-print(data)
+print("Data has been stored in 'data.txt'")
