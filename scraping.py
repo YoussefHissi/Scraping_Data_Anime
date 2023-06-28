@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # URL of the website to scrape
+data=[];
 for page in range(1, 27):
     url = f'https://zoro.to/movie?page={page}'
 
@@ -50,5 +51,24 @@ for page in range(1, 27):
         to_the_film='https://zoro.to'+film_direction[0]['href']
         response = requests.get(to_the_film)
         soup = BeautifulSoup(response.content, 'html.parser')
-        video= soup.select('#iframe-embed')
-        print(video)
+        video = soup.select('#iframe-embed')
+        if video:
+         video[0]['src'] = "https://rapid-cloud.co/embed-6/GVncPoK2HAma?k=1&amp;autoPlay=1&amp;oa=0&amp;asi=1"
+
+        obj = {
+            "video":video,
+            "title": title,
+            "image": image,
+            "overview": overview,
+            "duration": duration,
+            "score": score,
+            "aired": aired,
+            "permited": permited,
+            "studios": studios,
+        }
+        data.append(obj)
+
+        
+
+
+print(data)
