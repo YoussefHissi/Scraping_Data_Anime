@@ -31,9 +31,16 @@ for element in aired_div:
     aired = element.text.strip()
     print(aired)
 
+aired_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(3) > span.name')
+for element in aired_div:
+    aired = element.text.strip()
+    print(aired)
  
 
-
+permited_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(4) > span.name')
+for element in permited_div:
+    permited = element.text.strip()
+    print(permited)
 
 
 
