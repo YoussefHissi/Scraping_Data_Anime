@@ -1,7 +1,5 @@
-
 import requests
 from bs4 import BeautifulSoup
-import json
 
 # URL of the website to scrape
 url = 'https://zoro.to/movie'
@@ -12,63 +10,50 @@ response = requests.get(url)
 # Create BeautifulSoup object from the response content
 soup = BeautifulSoup(response.content, 'html.parser')
 
-
-
-# # Find the elements you want to scrape
-# # Here's an example of scraping the titles of all <h1> tags on the page
-# overview_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div.item.item-title.w-hide > div')
-# for element in overview_div:
-#     overview = element.text.strip()
-
-    
-
-# title_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-detail > h2')
-# for element in title_div:
-#     title = element.text.strip()
-  
-
-# aired_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(3) > span.name')
-# for element in aired_div:
-#     aired = element.text.strip()
-
-
-
-# permited_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(4) > span.name')
-# for element in permited_div:
-#     permited = element.text.strip()
-
-
-# duration_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(5) > span.name')
-# for element in duration_div:
-#     duration = element.text.strip()
-   
-
-#     score_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(7) > span.name')
-# for element in score_div:
-#     score = element.text.strip()
-    
-# studios_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(9) > a')
-# for element in studios_div:
-#     studios = element.text.strip()
-    
-# image_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-poster > div > img')
-# for element in image_div:
-#     image = element['src']
-#     print(image)
-
-# film={
-#     "title":title,
-#     'image':image,
-#     "overview":overview,
-#     "duration":duration,    
-#     "score":score,
-#     "aired":aired,
-#     "permited":permited,
-#     "studios":studios,
-# }
-
-
 films = soup.find_all('a', {'class': 'item-qtip'})
+list_Urls = []
 
-for index, film in enumerate(films):
-    print(f"Film {index+1}: {film['href']}")
+for film in films:
+    links = 'https://zoro.to/' + film['href']
+    list_Urls.append(links)
+
+for url in list_Urls:
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    overview_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div.item.item-title.w-hide > div')
+    overview = overview_div[0].text.strip() if overview_div else ''
+
+    title_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-detail > h2')
+    title = title_div[0].text.strip() if title_div else ''
+
+    aired_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(3) > span.name')
+    aired = aired_div[0].text.strip() if aired_div else ''
+
+    permited_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(4) > span.name')
+    permited = permited_div[0].text.strip() if permited_div else ''
+
+    duration_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(5) > span.name')
+    duration = duration_div[0].text.strip() if duration_div else ''
+
+    score_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(7) > span.name')
+    score = score_div[0].text.strip() if score_div else ''
+
+    studios_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(9) > a')
+    studios = studios_div[0].text.strip() if studios_div else ''
+
+    image_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-poster > div > img')
+    image = image_div[0]['src'] if image_div else ''
+
+    data = {
+        "title": title,
+        "image": image,
+        "overview": overview,
+        "duration": duration,
+        "score": score,
+        "aired": aired,
+        "permited": permited,
+        "studios": studios,
+    }
+
+    print(data)
