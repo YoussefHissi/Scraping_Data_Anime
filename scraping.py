@@ -21,39 +21,12 @@ for element in description_div:
 
     
 
-description_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div.item.item-title.w-hide > div')
-for element in description_div:
-    description = element.text.strip()
-    print(description)
+title_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-detail > h2')
+for element in title_div:
+    title = element.text.strip()
+    print(title)
 
-    description_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div.item.item-title.w-hide > div')
-for element in description_div:
-    description = element.text.strip()
-    print(description)
-
-    description_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div.item.item-title.w-hide > div')
-for element in description_div:
-    description = element.text.strip()
-    print(description)
-    description_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div.item.item-title.w-hide > div')
-for element in description_div:
-    description = element.text.strip()
-    print(description)
-
-    description_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div.item.item-title.w-hide > div')
-for element in description_div:
-    description = element.text.strip()
-    print(description)
-
-    description_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div.item.item-title.w-hide > div')
-for element in description_div:
-    description = element.text.strip()
-    print(description)
-    
-    description_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div.item.item-title.w-hide > div')
-for element in description_div:
-    description = element.text.strip()
-    print(description)
+ 
 
 
 
