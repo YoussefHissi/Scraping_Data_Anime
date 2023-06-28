@@ -17,40 +17,46 @@ soup = BeautifulSoup(response.content, 'html.parser')
 overview_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div.item.item-title.w-hide > div')
 for element in overview_div:
     overview = element.text.strip()
-    print(overview)
 
     
 
 title_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-detail > h2')
 for element in title_div:
     title = element.text.strip()
-    print(title)
+  
 
 aired_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(3) > span.name')
 for element in aired_div:
     aired = element.text.strip()
-    print(aired)
 
 
 
 permited_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(4) > span.name')
 for element in permited_div:
     permited = element.text.strip()
-    print(permited)
-
 
 
 duration_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(5) > span.name')
 for element in duration_div:
     duration = element.text.strip()
-    print(duration)
+   
 
     score_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(7) > span.name')
 for element in score_div:
     score = element.text.strip()
-    print(score)
-
+    
 studios_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(9) > a')
 for element in studios_div:
     studios = element.text.strip()
-    print(studios)
+    
+   
+
+film={
+    "film":title,
+    "overview":overview,
+    "duration":duration,
+    "score":score,
+    "aired":aired,
+    "permited":permited,
+    "studios":studios,
+}
