@@ -50,7 +50,7 @@ for element in score_div:
     score = element.text.strip()
     print(score)
 
-studios_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(7) > span.name')
+studios_div = soup.select('#ani_detail > div > div > div.anis-content > div.anisc-info-wrap > div.anisc-info > div:nth-child(9) > a')
 for element in studios_div:
     studios = element.text.strip()
     print(studios)
