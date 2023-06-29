@@ -58,7 +58,7 @@ for page in range(1, 27):
             video[0]['src'] = "https://rapid-cloud.co/embed-6/GVncPoK2HAma?k=1&amp;autoPlay=1&amp;oa=0&amp;asi=1"
 
         obj = {
-            "video": video[0]['src'] if video else '',
+            "video": video,
             "title": title,
             "image": image,
             "overview": overview,
