@@ -58,7 +58,7 @@ for page in range(1, 27):
             video[0]['src'] = "https://rapid-cloud.co/embed-6/GVncPoK2HAma?k=1&amp;autoPlay=1&amp;oa=0&amp;asi=1"
 
         obj = {
-            "video": video,
+            "video": video[0]['src'] if video else '',
             "title": title,
             "image": image,
             "overview": overview,
@@ -68,11 +68,11 @@ for page in range(1, 27):
             "permited": permited,
             "studios": studios,
         }
-        print(obj)
         data.append(obj)
+        print(obj)
 
-# Write data to a file
-with open('data.txt', 'w') as file:
+# Write data to a JSON file
+with open('data.json', 'w') as file:
     json.dump(data, file)
 
-print("Data has been stored in 'data.txt'")
+print("Data has been stored in 'data.json'")
